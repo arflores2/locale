@@ -1,0 +1,75 @@
+extend layout
+
+block styles
+
+block scripts
+  - var _app = 'cogito'
+  script(src="/vendor/bootstrap/js/ui-bootstrap-tpls-0.6.0.js")
+  script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBWK37_pyvhGcOq98hEFVhSkL-XqaSR2F0&sensor=true")
+  //- script(src="/vendor/js/OpenLayers.js")
+  //- script(src="/socket.io/socket.io.js")
+
+  script(src="app/#{_app}/app.js")
+
+  //- modules
+  script(src="app/cogito/List/List.js")
+  script(src="app/cogito/Map/Map.js")
+
+  //- common
+  script(src="app/common/directives/GoogleMap.js")
+  script(src="app/common/directives/OptionsTrayControl.js")
+  script(src="app/common/services/AroundMe.js")
+  script(src="app/common/services/CurrentLocation.js")
+  //- services
+  //- script(src="app/#{_app}/Socket.js")
+
+  //- directives
+
+  //- lib
+  script(src="app/lib/services/Communicator.js")
+
+block content
+  div(class="ns", ng-app="cogito", ng-controller="CogitoCtrl")
+    div(class="row header")
+      div(class="logo") 
+      
+      div(optionstraycontrol) 
+      //- div(class="options-tray-control")
+      //-   a(href="#")
+      //-     span(class="icon-menu")
+
+    div(class="row body")
+      div(class="col main scroll-y")
+        div(ng-view, style="height:100%;")
+
+      div(class="col options-tray", ng-class="{ 'active': optionsTray.active }")
+        div(class="view-options clearfix")
+          a(href="#/map", ng-click="optionsTray.active =! optionsTray.active")
+            div(class="option icon-map") 
+              span(class="option-text") Map
+
+          a(href="#/list", ng-click="optionsTray.active =! optionsTray.active")
+            div(class="option icon-list") 
+              span(class="option-text") List
+
+        div(class="debug")
+          h3 Data Status
+          pre {{debug.status}}
+
+    div(class="row footer")
+
+      div(class="categories clearfix")
+        div(class="category")
+          p(class="icon-music")
+
+        div(class="category")
+          p(class="icon-accessibility")
+
+        div(class="category")
+          p(class="icon-food")
+
+        div(class="category")
+          p(class="icon-users")
+
+        div(class="category")
+          p(class="icon-globe")

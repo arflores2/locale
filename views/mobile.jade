@@ -1,0 +1,29 @@
+
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    title NightShade
+
+    link(rel="stylesheet", href="/assets/css/nightshade.css")
+
+    script(src="/vendor/js/jquery-1.10.2.js")
+  body
+    div(class="ns")
+
+      div(class="row header")
+        div(class="logo") NightShade
+        div(class="options-tray-control") O
+
+      div(class="row body")
+        div(class="col main")
+
+        div(class="col options-tray")
+          h3 Data Status
+          pre {{debug.status}}
+          
+          h3 Selected Event
+          pre {{debug.marker | json}}
+
+      div(class="row footer")
+
